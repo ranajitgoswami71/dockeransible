@@ -1,5 +1,3 @@
-# allandenot.com - blog
-
 ## Ansible Provisioning EC2 hosts
 
 **Usage:**
@@ -13,6 +11,4 @@ E.g.
     
 After setting all variables, run it:
 
-    ansible-playbook -vv -i localhost, -e "type=webservers" provision-ec2.yml
-    
-More info: [http://allandenot.com/devops/2015/01/31/provisioning-ec2-hosts-with-ansible.html](http://allandenot.com/devops/2015/01/31/provisioning-ec2-hosts-with-ansible.html)
+ansible-playbook -vv -i localhost, -e "type=dockeransible" provision-ec2.yml
