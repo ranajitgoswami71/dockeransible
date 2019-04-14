@@ -7,6 +7,4 @@ ec2_region: "us-east-1"
 ec2_tag_Name: "dockeransible"
 ec2_tag_Type: "dockeransible"
 ec2_tag_Environment: "production"
-ec2_volume_size: 5
-aws_access_key_id: AKIAT3ANG56OZBAOXWXL
-aws_secret_access_key: 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
+ec2_volume_size: 8
