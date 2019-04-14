@@ -1,5 +1,4 @@
 FROM centos
-MAINTAINER Ranajit
 RUN yum -y install httpd
 RUN yum clean all
 COPY index.html /var/www/html/index.html
