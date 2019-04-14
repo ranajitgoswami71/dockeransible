@@ -7,3 +7,5 @@
    roles:
     - provision-ec2
     - pull_image
+    - create_webimage
+    - create_container
