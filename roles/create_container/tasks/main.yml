@@ -1,13 +1,10 @@
 ---
- - name: Create container
-   hosts: localhost
-   tasks:
-   - name: web container
-     docker_container:
-       name: web
-       image: webimage
-       state: started
-       ports:
-       - "9090:80"
-       tty: true
-       detach: true
+ - name: web container
+   docker_container:
+     name: web
+     image: webimage
+     state: started
+     ports:
+     - "9090:80"
+     tty: true
+     detach: true

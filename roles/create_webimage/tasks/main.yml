@@ -1,8 +1,6 @@
 ---
- - name: Create webimage
-   hosts: localhost
-   tasks:
-   - name: web container image build
-     docker_image:
-       path: /home/ubuntu/anspract/dockeransible/roles/create_webimage/files
-       name: webimage
+ - name: web container image build
+   docker_image:
+     name: webimage
+     path: /home/ubuntu/anspract/dockeransible/roles/create_webimage/files
+     state: build
