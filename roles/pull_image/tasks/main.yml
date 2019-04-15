@@ -1,7 +1,4 @@
 ---
- - name: Pull Centos image
-   hosts: localhost
-   tasks:
-   - name: pull
-     docker_image:
-       name: centos
+- name: pull an image
+  docker_image:
+    name: pacur/centos-7
