@@ -1,6 +1,0 @@
----
- - name: web container image build
-   docker_image:
-     name: webimage
-     path: /home/ubuntu/anspract/dockeransible/roles/create_webimage/files
-     state: build
