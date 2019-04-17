@@ -17,5 +17,4 @@
    local_action:
     copy:
      dest: "{{ '/etc/sudoers.d/'+ ansibleUser }}"
-     content: "{{ ansibleUser +' ALL=(ALL:ALL) NOPASSWD:ALL'}}"
-     
+     content: "{{ ansibleUser +' ALL=(ALL:ALL) NOPASSWD:ALL'}}"   
