@@ -8,3 +8,6 @@ ec2_tag_Name: "dockeransible"
 ec2_tag_Type: "dockeransible"
 ec2_tag_Environment: "production"
 ec2_volume_size: 8
+ansibleUser: "ansible"
+ansibleUserUID: 1234
+ansibleUserComment: "ansible account"

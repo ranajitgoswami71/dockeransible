@@ -1,0 +1,21 @@
+---
+ - name: create ansible user
+   local_action:
+    user:
+     name: "{{ ansibleUser }}"
+     comment: "{{ ansibleUserComment }}"
+     uid: "{{ ansibleUserUID }}"
+
+ - name: setup ssh key-based authorized login for ansibleUser
+   local_action:
+    authorized_key:
+     user: "{{ ansibleUser }}"
+     state: present
+     key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+
+ - name: setup permission for ansibleUser that allow no password for sudo
+   local_action:
+    copy:
+     dest: "{{ '/etc/sudoers.d/'+ ansibleUser }}"
+     content: "{{ ansibleUser +' ALL=(ALL:ALL) NOPASSWD:ALL'}}"
+     
