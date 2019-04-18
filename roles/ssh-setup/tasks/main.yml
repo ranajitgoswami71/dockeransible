@@ -1,2 +1,0 @@
-- name: Run the command to setup ssh
-  command: cat ~/.ssh/id_rsa.pub | ssh -i /home/ubuntu/anspract/dockeransible/dockeransible.pem ubuntu@-{{ ec2_ip_address }} "cat >> ~/.ssh/authorized_keys"

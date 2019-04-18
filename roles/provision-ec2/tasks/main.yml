@@ -26,6 +26,3 @@
              ec2_tag_Environment={{ec2_tag_Environment}}
              ec2_ip_address={{item.public_ip}}
    with_items: "{{ ec2.instances }}"
-
- - name: Run the command to setup ssh
-   command: cat ~/.ssh/id_rsa.pub | ssh -o StrictHostKeyChecking=no -i /home/ubuntu/anspract/dockeransible/dockeransible.pem ubuntu@{{item.public_ip}} "cat >> ~/.ssh/authorized_keys"
