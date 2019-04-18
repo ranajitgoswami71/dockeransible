@@ -6,4 +6,3 @@
     - include_vars: ec2_vars/{{type}}.yml
    roles:
     - provision-ec2
-    - ssh-setup
