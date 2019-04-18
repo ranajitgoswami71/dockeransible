@@ -1,17 +1,4 @@
----
- - name: create ansible user
-   user:
-     name: "{{ ansibleUser }}"
-     comment: "{{ ansibleUserComment }}"
-     uid: "{{ ansibleUserUID }}"
-
- - name: setup ssh key-based authorized login for ansibleUser
-   authorized_key:
-     user: "{{ ansibleUser }}"
-     state: present
-     key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
-
- - name: setup permission for ansibleUser that allow no password for sudo
-   copy:
-     dest: "{{ '/etc/sudoers.d/'+ ansibleUser }}"
-     content: "{{ ansibleUser +' ALL=(ALL:ALL) NOPASSWD:ALL'}}"   
+- name: Run the command to setup ssh
+  - copy: content="{{ ec2_ip_address }}" dest=/home/ubuntu/anspract/dockeransible/file.out
+  - command: ec2_ip=`cat /home/ubuntu/anspract/dockeransible/file.out`
+  - command: cat ~/.ssh/id_rsa.pub | ssh -i /home/ubuntu/anspract/dockeransible/dockeransible.pem ubuntu@ec2_ip "cat >> ~/.ssh/authorized_keys"
