@@ -1,4 +1,2 @@
 - name: Run the command to setup ssh
-  - copy: content="{{ ec2_ip_address }}" dest=/home/ubuntu/anspract/dockeransible/file.out
-  - command: ec2_ip=`cat /home/ubuntu/anspract/dockeransible/file.out`
-  - command: cat ~/.ssh/id_rsa.pub | ssh -i /home/ubuntu/anspract/dockeransible/dockeransible.pem ubuntu@ec2_ip "cat >> ~/.ssh/authorized_keys"
+  command: cat ~/.ssh/id_rsa.pub | ssh -i /home/ubuntu/anspract/dockeransible/dockeransible.pem ubuntu@-{{ ec2_ip_address }} "cat >> ~/.ssh/authorized_keys"
