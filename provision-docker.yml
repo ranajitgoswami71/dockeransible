@@ -1,6 +1,6 @@
 ---
  - name: Transfer and execute a script.
-   hosts: localhost
+   hosts: all
    user: ubuntu
    sudo: yes
    tasks:
