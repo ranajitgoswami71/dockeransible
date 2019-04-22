@@ -1,6 +1,6 @@
 ---
  - name: Transfer and execute a script.
-   hosts: all
+   hosts: nginx_web
    user: ubuntu
    sudo: yes
    tasks:
