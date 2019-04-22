@@ -1,12 +1,20 @@
 #!/bin/bash
 
-war_file_check ()
+docker_install ()
 {
-##Check if required war file exists
-ls -lrt "${PROJECT_DIR}"/sample.war
+curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
+sudo usermod -aG docker "${SCRIPT_FOR}"
+docker -v
+}
+
+index_file_check ()
+{
+##Check if required html file exists
+ls -lrt "${PROJECT_DIR}"/index.html
 if [ $? -gt 0 ]
 then
-        echo "Sample.war file does not exist"
+        echo "index.html file does not exist"
         exit 1
 else
         echo "File exist"
@@ -58,28 +66,6 @@ echo "</html>" >> "${PROJECT_DIR}"/index.html
 
 }
 
-dockerfile_creation ()
-{
-##Dockerfile creation
-echo "# Pull base image." > "${PROJECT_DIR}"/Dockerfile
-echo "FROM ubuntu:latest" >> "${PROJECT_DIR}"/Dockerfile
-echo " " >> "${PROJECT_DIR}"/Dockerfile
-echo "# Update container & Install Tomcat." >> "${PROJECT_DIR}"/Dockerfile
-echo "RUN apt-get -y update && apt-get -y upgrade" >> "${PROJECT_DIR}"/Dockerfile
-echo "RUN apt-get -y install openjdk-8-jdk wget" >> "${PROJECT_DIR}"/Dockerfile
-echo "RUN mkdir /usr/local/tomcat" >> "${PROJECT_DIR}"/Dockerfile
-echo "RUN wget https://archive.apache.org/dist/tomcat/tomcat-8/v8.5.16/bin/apache-tomcat-8.5.16.tar.gz -O /tmp/tomcat.tar.gz" >> "${PROJECT_DIR}"/Dockerfile
-echo "RUN cd /tmp && tar xvfz tomcat.tar.gz" >> "${PROJECT_DIR}"/Dockerfile
-echo "RUN cp -Rv /tmp/apache-tomcat-8.5.16/* /usr/local/tomcat/" >> "${PROJECT_DIR}"/Dockerfile
-echo "ADD sample.war /usr/local/tomcat/webapps/sample.war" >> "${PROJECT_DIR}"/Dockerfile
-echo " " >> "${PROJECT_DIR}"/Dockerfile
-echo "# Expose ports." >> "${PROJECT_DIR}"/Dockerfile
-echo "EXPOSE 8080" >> "${PROJECT_DIR}"/Dockerfile
-echo " " >> "${PROJECT_DIR}"/Dockerfile
-echo "# Define default command." >> "${PROJECT_DIR}"/Dockerfile
-echo "CMD [\"/usr/local/tomcat/bin/catalina.sh\", \"run\"]" >> "${PROJECT_DIR}"/Dockerfile
-}
-
 dockerfile_creation_nginx ()
 {
 echo "# Pull base image." > "${PROJECT_DIR}"/Dockerfile
@@ -123,13 +109,13 @@ MACHINE=`uname -v|cut -d " " -f1|cut -d "-" -f2`
 SCRIPT_FOR=Ubuntu
 if [ "${MACHINE}" = "${SCRIPT_FOR}" ]
 then
-        echo "This is an Ubuntu machine.Proceeding for docker container creation."
-        sudo apt-get update -y
-        sudo apt-get upgrade -y
-        ##war_file_check
+        echo "This is an Ubuntu machine.Proceeding for docker installation."
+	docker_install
         index_file_nginx
-        ##dockerfile_creation
+	echo "Creating html file"
+	index_file_check
         dockerfile_creation_nginx
+	echo "Proceeding for docker container creation."
         docker_container_create
 else
         echo "Not an Ubuntu machine.Docker container creation terminated."
