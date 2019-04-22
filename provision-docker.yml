@@ -8,4 +8,4 @@
        copy: src=docker_script.sh dest=/home/ubuntu mode=0777
 
      - name: Execute the script
-       local_action: command sudo bash /home/ubuntu/docker_script.sh
+       command: bash /home/ubuntu/docker_script.sh
