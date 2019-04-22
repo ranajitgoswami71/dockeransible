@@ -110,8 +110,8 @@ echo "EXPOSE 443" >> "${PROJECT_DIR}"/Dockerfile
 
 docker_container_create ()
 {
-docker build -t autosample:1.1 "${PROJECT_DIR}"/.
-docker run --name autosamplecont -d -p 9090:80 autosample:1.1
+sudo docker build -t autosample:1.1 "${PROJECT_DIR}"/.
+sudo docker run --name autosamplecont -d -p 9090:80 autosample:1.1
 }
 
 
