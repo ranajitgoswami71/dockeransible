@@ -90,8 +90,8 @@ echo "# Define default command." >> "${PROJECT_DIR}"/Dockerfile
 echo "CMD [\"nginx\"]" >> "${PROJECT_DIR}"/Dockerfile
 echo " " >> "${PROJECT_DIR}"/Dockerfile
 echo "# Expose ports." >> "${PROJECT_DIR}"/Dockerfile
-echo "EXPOSE 9090" >> "${PROJECT_DIR}"/Dockerfile
-echo "EXPOSE 443" >> "${PROJECT_DIR}"/Dockerfile
+##echo "EXPOSE 9090" >> "${PROJECT_DIR}"/Dockerfile
+##echo "EXPOSE 443" >> "${PROJECT_DIR}"/Dockerfile
 }
 
 docker_container_create ()
