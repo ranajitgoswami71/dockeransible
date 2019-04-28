@@ -2,6 +2,9 @@
  - hosts: localhost
    gather_facts: false
 
+   pre_tasks:
+    - include_vars: ec2_vars/{{type}}.yml
+
    tasks:
    - name: Terminate instance
      ec2_instance:
